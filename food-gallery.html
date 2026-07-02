@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Gallery</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        .container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            overflow: hidden;
+            width: 280px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card .name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            padding: 0.75rem 1rem 0.25rem;
+            color: #333;
+        }
+        .card .detail {
+            color: #666;
+            padding: 0.25rem 1rem;
+            font-size: 0.9rem;
+        }
+        .card .detail:last-child {
+            padding-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Food Gallery</h1>
+    <div class="container" id="app"></div>
+
+    <script>
+        const foods = [
+            { name: "Pizza",    cuisine: "Italian", origin: "Italy",   image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=560&h=400&fit=crop" },
+            { name: "Pad Thai", cuisine: "Thai",    origin: "Thailand", image: "https://images.unsplash.com/photo-1559314809-0d155014e29e?w=560&h=400&fit=crop" },
+            { name: "Pasta",    cuisine: "Italian", origin: "Italy",   image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=560&h=400&fit=crop" },
+        ];
+
+        const app = document.getElementById("app");
+
+        foods.forEach((item) => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" loading="lazy" />
+                <div class="name">${item.name}</div>
+                <div class="detail">Cuisine: ${item.cuisine}</div>
+                <div class="detail">Origin: ${item.origin}</div>
+            `;
+            app.appendChild(card);
+        });
+    </script>
+</body>
+</html>
